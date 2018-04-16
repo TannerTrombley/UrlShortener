@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlShortener", "UrlShortener\UrlShortener.csproj", "{201B67F5-6900-4386-8CAC-49E1B814CFCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{143AE8C4-AD5C-4C0E-AE7E-BB36E710A3D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebRole", "WebRole", "{E07B4296-34E4-4CBE-A015-CBDD921E050C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6C6AAD21-FB19-4EEA-B50A-E64B28294FD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UrlStorageProviders", "UrlStorageProviders", "{BAFFBDFA-328A-4F3C-9BD9-E4C9F4C2CA97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalUrlStorageProvider", "LocalUrlStorageProvider\LocalUrlStorageProvider.csproj", "{F12319A9-C826-4821-80A2-2E6D239D127C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LocalStorageProvider", "LocalStorageProvider", "{CE524A33-587A-4410-A395-D15A6CDDCA91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CosmosStorageProvider", "CosmosStorageProvider", "{1F412782-713D-4D32-AF5E-92CACFA1BE22}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{201B67F5-6900-4386-8CAC-49E1B814CFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{201B67F5-6900-4386-8CAC-49E1B814CFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{201B67F5-6900-4386-8CAC-49E1B814CFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{201B67F5-6900-4386-8CAC-49E1B814CFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143AE8C4-AD5C-4C0E-AE7E-BB36E710A3D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143AE8C4-AD5C-4C0E-AE7E-BB36E710A3D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143AE8C4-AD5C-4C0E-AE7E-BB36E710A3D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143AE8C4-AD5C-4C0E-AE7E-BB36E710A3D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12319A9-C826-4821-80A2-2E6D239D127C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12319A9-C826-4821-80A2-2E6D239D127C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12319A9-C826-4821-80A2-2E6D239D127C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12319A9-C826-4821-80A2-2E6D239D127C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{201B67F5-6900-4386-8CAC-49E1B814CFCA} = {E07B4296-34E4-4CBE-A015-CBDD921E050C}
+		{143AE8C4-AD5C-4C0E-AE7E-BB36E710A3D4} = {6C6AAD21-FB19-4EEA-B50A-E64B28294FD1}
+		{F12319A9-C826-4821-80A2-2E6D239D127C} = {CE524A33-587A-4410-A395-D15A6CDDCA91}
+		{CE524A33-587A-4410-A395-D15A6CDDCA91} = {BAFFBDFA-328A-4F3C-9BD9-E4C9F4C2CA97}
+		{1F412782-713D-4D32-AF5E-92CACFA1BE22} = {BAFFBDFA-328A-4F3C-9BD9-E4C9F4C2CA97}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B48BA2D3-C87B-4E1B-A97F-62037385A272}
+	EndGlobalSection
+EndGlobal
