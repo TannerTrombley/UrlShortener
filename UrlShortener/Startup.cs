@@ -59,12 +59,17 @@ namespace UrlShortener
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            //Register global exception Handling
+            //must be registered before other middleware that can throw exceptions
+            RegisterErrorHandling(app);
 
             app.UseMvc();
+        }
+
+        private static void RegisterErrorHandling(IApplicationBuilder app)
+        {
+            app.UseStatusCodePagesWithReExecute("/api/Error/{0}");
+            app.UseExceptionHandler("/api/Error/500");
         }
     }
 }

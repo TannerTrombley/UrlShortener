@@ -11,7 +11,6 @@ namespace Common.Interfaces
     {
         Task<StoredUrl> GetUrlByIdAsync(string _id);
         Task<StoredUrl> PostUrlAsync(StoredUrl value);
-        Task<StoredUrl> PutUrlAsync(StoredUrl value);
         Task<IEnumerable<StoredUrl>> ListUrlsAsync();
         Task DeleteUrlAsync();
     }

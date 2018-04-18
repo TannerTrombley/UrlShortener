@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace Common.DataModels.PublicDataModels
 {
     public class PublicUrlVersion0
     {
+        [Required]
         public string Value { get; set; }
         public string Id { get; set; }
 
