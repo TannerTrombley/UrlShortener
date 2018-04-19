@@ -11,10 +11,15 @@ namespace LocalUrlStorageProvider
     public class LocalUrlStorageProvider : IUrlStorageProvider
     {
         private static Dictionary<string, StoredUrl> InMemoryStore;
+        private IIdGenerator IdGenerator;
 
-        public LocalUrlStorageProvider(LocalUrlStoreSettings settings)
+        private const int IdCreationRetryCount = 5;
+
+
+        public LocalUrlStorageProvider(LocalUrlStoreSettings settings, IIdGenerator idGenerator)
         {
             InMemoryStore = settings.Store;
+            IdGenerator = idGenerator;
         }
 
         public Task DeleteUrlAsync()
@@ -24,6 +29,11 @@ namespace LocalUrlStorageProvider
 
         public async Task<StoredUrl> GetUrlByIdAsync(string _id)
         {
+            if (InMemoryStore == null)
+            {
+                throw new Exception("Internal Memory invalid state");
+            }
+
             StoredUrl url;
             if (!InMemoryStore.TryGetValue(_id, out url))
             {
@@ -43,19 +53,41 @@ namespace LocalUrlStorageProvider
             return result;
         }
 
-        public async Task<StoredUrl> PutUrlAsync(StoredUrl value)
+        public async Task<StoredUrl> PostUrlAsync(string value)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<StoredUrl> PostUrlAsync(StoredUrl value)
-        {
-            if (InMemoryStore.ContainsKey(value.Id))
+            if (InMemoryStore == null)
             {
-                throw new ArgumentException($"Url with id: {value.Id} already exists");
+                throw new Exception("Internal Memory invalid state");
             }
-            InMemoryStore[value.Id] = value;
-            return value;
+
+            var retryCount = 0;
+            string id;
+            bool unique = false;
+            do
+            {
+                id = IdGenerator.GenerateId();
+                if (!InMemoryStore.ContainsKey(id))
+                {
+                    unique = true;
+                    break;
+                }
+                retryCount++;
+            } while (retryCount < IdCreationRetryCount);
+
+            if (!unique)
+            {
+                throw new Exception("unable to generate unique ID. all of them are used up :/");
+            }
+
+            var internalUrl = new StoredUrl()
+            {
+                Url = value,
+                Id = id,
+                LastAccessed = DateTime.Now
+            };
+
+            InMemoryStore[id] = internalUrl;
+            return internalUrl;
         }
     }
 }

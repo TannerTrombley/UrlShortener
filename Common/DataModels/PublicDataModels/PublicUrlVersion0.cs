@@ -8,6 +8,7 @@ namespace Common.DataModels.PublicDataModels
     public class PublicUrlVersion0
     {
         [Required]
+        [Url]
         public string Value { get; set; }
         public string Id { get; set; }
 

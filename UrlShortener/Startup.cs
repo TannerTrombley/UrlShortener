@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Common.IdGenerator;
 using Common.Interfaces;
 using LocalUrlStorageProvider;
 using Microsoft.AspNetCore.Builder;
@@ -39,6 +40,8 @@ namespace UrlShortener
             services.Configure<ApplicationConfig>(appSettings);
 
             SetupStoredUrlProvider(services);
+
+            services.AddTransient<IIdGenerator, RandomUrlSafeIdGenerator>();
         }
 
         private void SetupStoredUrlProvider(IServiceCollection services)

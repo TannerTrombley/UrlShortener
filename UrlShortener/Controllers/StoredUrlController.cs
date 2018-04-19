@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using UrlShortener.Configurations;
-using shortid;
 using UrlShortener.Controllers.Common;
 using Common.DataModels.PublicDataModels.ApiResponses;
 
@@ -43,8 +42,16 @@ namespace UrlShortener.Controllers
         public async Task<IActionResult> Get(string id)
         {
             StoredUrl stored;
-            stored = await UrlStore.GetUrlByIdAsync(id);
-            
+
+            try
+            {
+                stored = await UrlStore.GetUrlByIdAsync(id);
+            }
+            catch (ArgumentException ex)
+            {
+                return new ObjectResult(new ApiResponse(404, $"Url with id: {id} not found"));
+            }
+      
             return Ok(new ApiOkResponse(PublicUrlVersion0.FromInternal(stored)));
         }
         
@@ -52,24 +59,10 @@ namespace UrlShortener.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]PublicUrlVersion0 value)
         {
-            var internalUrl = new StoredUrl()
-            {
-                Url = value.Value,
-                Id = ShortId.Generate(),
-                LastAccessed = DateTime.Now
-            };
-
-            await UrlStore.PostUrlAsync(internalUrl);
-            return Ok(new ApiOkResponse(PublicUrlVersion0.FromInternal(internalUrl)));
+            var stored = await UrlStore.PostUrlAsync(value.Value);
+            return Ok(new ApiOkResponse(PublicUrlVersion0.FromInternal(stored)));
         }
-        
-        // PUT: api/StoredUrl/v0/5
-        [HttpPut("{id}")]
-        public void Put(string id, [FromBody]string value)
-        {
-            throw new NotImplementedException();
-        }
-        
+       
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(string id)

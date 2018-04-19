@@ -10,7 +10,7 @@ namespace Common.Interfaces
     public interface IUrlStorageProvider
     {
         Task<StoredUrl> GetUrlByIdAsync(string _id);
-        Task<StoredUrl> PostUrlAsync(StoredUrl value);
+        Task<StoredUrl> PostUrlAsync(string value);
         Task<IEnumerable<StoredUrl>> ListUrlsAsync();
         Task DeleteUrlAsync();
     }
