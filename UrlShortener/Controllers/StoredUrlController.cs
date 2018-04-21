@@ -16,7 +16,8 @@ namespace UrlShortener.Controllers
 {
     [Produces("application/json")]
     [Route("api/StoredUrls/v0")]
-    [ApiValidationFilterAttribute]
+    [ApiValidationFilter]
+    [ApiExceptionFilter]
     public class StoredUrlController : Controller
     {
         private IUrlStorageProvider UrlStore;

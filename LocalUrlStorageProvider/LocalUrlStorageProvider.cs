@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
+using Common.Exceptions.ApiExceptions;
 
 namespace LocalUrlStorageProvider
 {
@@ -37,7 +38,7 @@ namespace LocalUrlStorageProvider
             StoredUrl url;
             if (!InMemoryStore.TryGetValue(_id, out url))
             {
-                throw new ArgumentException($"Stored Url with id: {_id} is not found");
+                throw new ApiNotFoundException($"Stored Url with id: {_id} is not found");
             }
             return url;
         }
